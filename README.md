@@ -2,11 +2,13 @@
 
 [![GLP1Prices.co MCP connector](https://glama.ai/mcp/connectors/co.founden.glp1pricesco/glp1pricesco/badges/score.svg)](https://glama.ai/mcp/connectors/co.founden.glp1pricesco/glp1pricesco)
 
-What US providers charge people paying cash for tirzepatide and semaglutide, compounded and brand-name (Zepbound, Mounjaro, Wegovy, Ozempic), read from each provider's own web page and dated. GLP1Prices.co keeps the index current every day and opens it three ways: a remote MCP server for AI assistants, a keyless JSON API, and a monthly open dataset.
+What US providers charge people paying cash for tirzepatide and semaglutide, compounded and brand-name (Zepbound, Mounjaro, Wegovy, Ozempic), read from each provider's own web page and dated. GLP1Prices.co keeps the index current every day and opens it four ways: a remote MCP server for AI assistants, a keyless JSON API, a price list any web page can embed, and a monthly open dataset.
 
 - **Website:** [glp1pricesco.founden.co](https://glp1pricesco.founden.co)
 - **MCP server:** `https://glp1pricesco.founden.co/api/mcp` (remote, Streamable HTTP, no key)
 - **JSON API:** `https://glp1pricesco.founden.co/api/v1/prices` ([OpenAPI](https://glp1pricesco.founden.co/openapi.json), no key, CORS open)
+- **Price widget:** `https://glp1pricesco.founden.co/embed/index` and one list per medicine ([all of them, with the code to paste](https://glp1pricesco.founden.co/developers#widget))
+- **RSS feed:** `https://glp1pricesco.founden.co/feed.xml` (one item each day the index is read, and one per monthly report)
 - **Dataset:** November 2026 edition, 1,224 prices from 510 providers: [`glp1prices-november-2026.csv`](glp1prices-november-2026.csv) here, and on Zenodo as [10.5281/zenodo.24523120](https://doi.org/10.5281/zenodo.24523120)
 - **Official MCP Registry:** `co.founden.glp1pricesco/glp1-price-index`
 
@@ -51,6 +53,16 @@ Add `source=<your-app>` to any call and the page links in the answer carry your 
 ```bash
 curl "https://glp1pricesco.founden.co/api/v1/prices?medication=semaglutide&limit=5&source=my-app"
 ```
+
+## Show today's prices on your page
+
+Paste one line and your readers see today's lowest prices, updated daily. The list runs no script and sets no cookie; each provider in it links to that provider's prices on GLP1Prices.co, beside its plan, fees and source.
+
+```html
+<iframe src="https://glp1pricesco.founden.co/embed/compounded-tirzepatide?source=your-site&rows=5" title="GLP-1 prices today, from GLP1Prices.co" width="100%" height="420" style="border:0;max-width:520px" loading="lazy"></iframe>
+```
+
+Lists: `index` (the index at a glance), `compounded-tirzepatide`, `compounded-semaglutide`, `zepbound`, `wegovy`, `mounjaro`, `ozempic`. Settings: `source` (your site's name, so visits you send count as yours), `rows` (1 to 10), `theme` (`light`, `dark` or `auto`). More at [glp1pricesco.founden.co/developers](https://glp1pricesco.founden.co/developers).
 
 ## How the prices are read
 
