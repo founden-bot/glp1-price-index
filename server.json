@@ -1,0 +1,14 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "co.founden.glp1pricesco/glp1-price-index",
+  "title": "GLP1Prices.co: daily US price index of tirzepatide and semaglutide",
+  "description": "Daily US cash prices of tirzepatide and semaglutide by provider, lowest first, each with its source.",
+  "version": "1.0.0",
+  "websiteUrl": "https://glp1pricesco.founden.co",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://glp1pricesco.founden.co/api/mcp"
+    }
+  ]
+}
